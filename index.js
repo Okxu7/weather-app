@@ -1,9 +1,27 @@
-//Challenge 1She Codes Plus Logo     When clicking this button, alert "Hooray!"
+function showUser(response) {
+  let temperatureElement = document.querySelector("#temperature");
+temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  let cityElement = document.querySelector("#city");
+  cityElement.innerHTML = response.data.name;
 
-function degrees() {
-  alert("Hooray!");
 }
 
+ 
+
+let apiKey = "e0a32f92a140f9f879e0f5724934e532";
+let apiUrl =
+  "https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.15&appid=e0a32f92a140f9f879e0f5724934e532&units=metric";
+ 
+axios.get(apiUrl).then(showUser);
+
+
+
+//Challenge 1She Codes Plus Logo     When clicking this button, alert "Hooray!"
+
+/*----function degrees() {
+  alert("Hooray!");
+}
+${response.data.name}`
 let button = document.querySelector("button");
 button.addEventListener("click", degrees);
 
@@ -26,4 +44,4 @@ function signUp(event) {
   alert(`Welcome ${inputName.value}, your emale: ${inputEmail.value}`);
 }
 let form = document.querySelector("#signup-form");
-form.addEventListener("submit", signUp);
+form.addEventListener("submit", signUp)------------ */
