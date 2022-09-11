@@ -17,13 +17,13 @@ return `${day}  ${hours}:${minutes}`;
   
   function showTemperature(response) {
   console.log(response.data);
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
-  let cityElement = document.querySelector("#city");
+   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.name;
+
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(response.data.main.temp); 
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = response.data.weather[0].description;
-
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = response.data.main.humidity;
   let windElement = document.querySelector("#wind");
@@ -49,9 +49,10 @@ axios.get(apiUrl).then(showTemperature);
     event.preventDefault();
     let cityInput = document.querySelector("#city-input");
     console.log(cityInput.value);
+    search(cityInput.value);
   }     
-search("milan");
-   //showTemperature(input.value);
+ //search("milan");
+  
   let form = document.querySelector("#search-form");
  form.addEventListener("submit", handleSubmit);   
  
