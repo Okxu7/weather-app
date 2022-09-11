@@ -1,18 +1,31 @@
-function showUser(response) {
+function showTemperature(response) {
+  console.log(response.data);
   let temperatureElement = document.querySelector("#temperature");
-temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.name;
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.innerHTML = response.data.weather[0].description;
 
-}
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = response.data.main.humidity;
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  let visibilityElement = document.querySelector("#visibility");
+  visibilityElement.innerHTML = response.data.visibility;
 
- 
+ let dataElement = document.querySelector("#data");
+ dataElement.innerHTML = 767;
 
+
+} 
+                 
 let apiKey = "e0a32f92a140f9f879e0f5724934e532";
 let apiUrl =
   "https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.15&appid=e0a32f92a140f9f879e0f5724934e532&units=metric";
  
-axios.get(apiUrl).then(showUser);
+      
+axios.get(apiUrl).then(showTemperature);
 
 
 

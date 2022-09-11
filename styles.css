@@ -22,6 +22,11 @@ h1 {
        padding: 6px;
   margin: 20px;  
 }
+
+#description {  
+  text-transform: capitalize;
+} 
+
  
  #temperature { 
   font-weight: 600;
