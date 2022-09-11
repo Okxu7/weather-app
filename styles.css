@@ -14,17 +14,17 @@ form {
   margin-left: 40px;
 }
 
-
-
 h1 {  
   font-weight: 900; 
   font-size: 64px;
-       padding: 6px;
+       padding: 10px;
   margin: 20px;  
 }
-
-#description {  
-  text-transform: capitalize;
+h1:first-letter{  
+text-transform: capitalize;
+} 
+#description:first-letter{  
+text-transform: capitalize;
 } 
 
  

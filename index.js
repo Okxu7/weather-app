@@ -1,4 +1,21 @@
-function showTemperature(response) {
+  function FormatData(timestamp) {
+let data = new Date(timestamp);
+let hours = data.getHours();
+if (hours < 10) {
+ hours = `0${hours}`;   
+}
+let minutes = data.getMinutes();
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
+let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+let day = days[data.getDay()];
+return `${day}  ${hours}:${minutes}`;
+  }
+  
+  
+  
+  function showTemperature(response) {
   console.log(response.data);
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
@@ -15,38 +32,33 @@ function showTemperature(response) {
   visibilityElement.innerHTML = response.data.visibility;
 
  let dataElement = document.querySelector("#data");
- dataElement.innerHTML = 767;
-
-
+ dataElement.innerHTML = FormatData(response.data.dt * 1000);
 } 
-                 
+
+
+ function search(city) {
+              
 let apiKey = "e0a32f92a140f9f879e0f5724934e532";
-let apiUrl =
-  "https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.15&appid=e0a32f92a140f9f879e0f5724934e532&units=metric";
- 
-      
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 axios.get(apiUrl).then(showTemperature);
+ } 
 
+ //city = document.querySelector("#city-input");
+ //form.addEventListener("Search", showTemperature);
+  function  handleSubmit(event) {
+    event.preventDefault();
+    let cityInput = document.querySelector("#city-input");
+    console.log(cityInput.value);
+  }     
+search("milan");
+   //showTemperature(input.value);
+  let form = document.querySelector("#search-form");
+ form.addEventListener("submit", handleSubmit);   
+ 
+ 
 
-
-//Challenge 1She Codes Plus Logo     When clicking this button, alert "Hooray!"
-
-/*----function degrees() {
-  alert("Hooray!");
-}
-${response.data.name}`
-let button = document.querySelector("button");
-button.addEventListener("click", degrees);
-
-//Challenge 2    When submitting the form, alert the value of the password input
-function input() {
-  alert("Your password is inputed");
-}
-
-let password = document.querySelector("#password-form");
-password.addEventListener("submit", input);
-
-//Challenge 3  When submitting the form, alert the value of the username and email inputs
+ 
+/*----//Challenge 3  When submitting the form, alert the value of the username and email inputs
 
 function signUp(event) {
   event.preventDefault();
