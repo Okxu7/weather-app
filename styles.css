@@ -45,11 +45,16 @@ ul {
 [href^="#"] {
   text-decoration:  none;    
 }
-
+  
 small { 
   padding: 90px;   
-}
+} 
+ 
 
+
+
+
+/* 
 /* li {
   margin: 0;
   padding: 0;

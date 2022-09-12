@@ -29,6 +29,8 @@ cityElement.innerHTML = response.data.name;
   let visibilityElement = document.querySelector("#visibility");
   visibilityElement.innerHTML = response.data.visibility;
 
+  celsiusTemperature = response.data.main.temp;
+
 let dataElement = document.querySelector("#data");
 dataElement.innerHTML = FormatData(response.data.dt * 1000);
   }
@@ -46,29 +48,37 @@ console.log(cityInput.value);
 search(cityInput.value);
   }     
       
-  let form = document.querySelector("#search-form");
-form.addEventListener("submit", handleSubmit);   
  
- function displayFahrenheitTemperature(event)  {
-let temperatureElement = document.querySelector("#temperature");
-let fahrenheitTemperature = (celsiusTemperature * 9)/5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature); 
- }
+ 
+ function displayFahrenheitTemperature(event) {
+ 
+   let temperatureElement = document.querySelector("#temperature");
+ 
+   let fahrenheitTemperature =   celsiusTemperature * 9 / 5 + 32;
+     console.log(fahrenheitTemperature);
+   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+   }
+ 
 
  function displayCelsiusTemperature(event) {
    let temperatureElement = document.querySelector("#temperature");  
    temperatureElement.innerHTML = Math.round(celsiusTemperature);
+   console.log(temperatureElement);
  }
 
-
-
+ 
 let  celsiusTemperature = null;
-let fahrenheitLink = document.querySelector("#search-form");
-fahrenheitLink.addEventListener("submit", displayFahrenheitTemperature);
+ let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);   
+ 
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
-let celsiusLink = document.querySelector("#fahrenhei-form");
-fahrenheitLink.addEventListener("submit", displayFahrenheitTemperature);
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
+  displayFahrenheitTemperature(77);
+search("oslo");
 /*----//Challenge 3   When submitting the form, alert the value of the username and email inputs
 
 function signUp(event) {
