@@ -31,9 +31,15 @@ cityElement.innerHTML = response.data.name;
 
   celsiusTemperature = response.data.main.temp;
 
-let dataElement = document.querySelector("#data");
-dataElement.innerHTML = FormatData(response.data.dt * 1000);
-  }
+ let dataElement = document.querySelector("#data");
+ dataElement.innerHTML = FormatData(response.data.dt * 1000);
+
+let iconElement = document.querySelector("#icon");
+iconElement.setAttribute(
+  "src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+);
+ iconElement.setAttribute("alt", response.data.weather[0].description);
+}
 
 function search(city) {              
 let apiKey = "e0a32f92a140f9f879e0f5724934e532";
@@ -43,51 +49,32 @@ axios.get(apiUrl).then(showTemperature);
  
   function  handleSubmit(event) {
 event.preventDefault();
-let cityInput = document.querySelector("#city-input");
-console.log(cityInput.value);
+let cityInput = document.querySelector("#city-input"); 
 search(cityInput.value);
   }     
-      
- 
- 
- function displayFahrenheitTemperature(event) {
- 
-   let temperatureElement = document.querySelector("#temperature");
- 
-   let fahrenheitTemperature =   celsiusTemperature * 9 / 5 + 32;
-     console.log(fahrenheitTemperature);
-   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-   }
- 
 
- function displayCelsiusTemperature(event) {
+   function displayFahrenheiTemperature(event) { 
+   let temperatureElement = document.querySelector("#temperature"); 
+   let fahrenheiTemperature =  celsiusTemperature * 9 / 5 + 32;
+   console.log(fahrenheiTemperature);
+   temperatureElement.innerHTML = Math.round(fahrenheiTemperature);
+   }
+
+   function displayCelsiusTemperature(event) {
    let temperatureElement = document.querySelector("#temperature");  
    temperatureElement.innerHTML = Math.round(celsiusTemperature);
-   console.log(temperatureElement);
- }
-
+   console.log(celsiusTemperature);
+   }
  
 let  celsiusTemperature = null;
- let form = document.querySelector("#search-form");
+let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);   
  
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+let fahrenheiLink = document.querySelector("#fahrenhei-link");
+fahrenheiLink.addEventListener("click", displayFahrenheiTemperature);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
-  displayFahrenheitTemperature(77);
-search("oslo");
-/*----//Challenge 3   When submitting the form, alert the value of the username and email inputs
-
-function signUp(event) {
-  event.preventDefault();
-  let inputName = document.querySelector("#username-input");
-  let inputEmail = document.querySelector("#email-input");
-  console.log(inputName.value);
-  console.log(inputEmail.value);
-  alert(`Welcome ${inputName.value}, your emale: ${inputEmail.value}`);
-}
-let form = document.querySelector("#signup-form");
-form.addEventListener("submit", signUp)------------ */
+search("Kyiv");
+displayFahrenheiTemperature(77);
